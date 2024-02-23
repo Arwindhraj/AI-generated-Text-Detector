@@ -29,9 +29,10 @@ function UserInput() {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Provide the Text:
             <textarea
-              className="resize-none border rounded-md p-2 w-full mt-1"
+              className="resize-none border rounded-md p-20 w-full mt-3"
               value={numA}
               onChange={(e) => setNumA(e.target.value)}
+              style={{ resize: "none" }}
             />
           </label>
         </div>
@@ -49,4 +50,15 @@ function UserInput() {
   );
 }
 
-export default UserInput;
+function App() {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold text-center mb-1 mt-8">
+        AI-generated-Text-Detector
+      </h1>
+      <UserInput />
+    </div>
+  );
+}
+
+export default App;
