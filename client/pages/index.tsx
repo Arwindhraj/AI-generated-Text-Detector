@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function UserInput() {
   const [numA, setNumA] = useState("");
-  const [result, setResult] = useState("Result will be displayed here");
+  const [result, setResult] = useState("");
 
   const fetchData = async () => {
     try {
@@ -15,7 +15,7 @@ function UserInput() {
       });
 
       const data = await response.json();
-      setResult(`Result: ${data.result}`);
+      setResult(`${data.result}`);
     } catch (error) {
       console.error("Error fetching data:", error);
       setResult("Error fetching data");
@@ -23,24 +23,30 @@ function UserInput() {
   };
 
   return (
-    <div>
-      <div>
-        <label>
-          Number A:
-          <input
-            type="string"
-            value={numA}
-            onChange={(e) => setNumA(e.target.value)}
-          />
-        </label>
+    <div className="flex justify-center items-center h-screen">
+      <div className="border rounded-lg p-8 max-w-md w-full bg-white shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Provide the Text:
+            <textarea
+              className="resize-none border rounded-md p-2 w-full mt-1"
+              value={numA}
+              onChange={(e) => setNumA(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="mb-4 flex justify-center">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out transform hover:scale-105"
+            onClick={fetchData}
+          >
+            Check
+          </button>
+        </div>
+        <div className="text-gray-700">{result}</div>
       </div>
-      <div>
-        <button onClick={fetchData}>Enter</button>
-      </div>
-      <div>{result}</div>
     </div>
   );
 }
 
 export default UserInput;
-
