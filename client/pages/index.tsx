@@ -39,7 +39,8 @@ function UserInput() {
       });
 
       const data = await response.json();
-      setResult(`Processed PDF result: ${data.result2}`);
+      setResult(`Processed PDF result: ${data.result}`);
+      console.log("Score:", data.score);
     } catch (error) {
       console.error("Error processing PDF:", error);
       setResult("Error processing PDF");

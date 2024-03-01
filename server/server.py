@@ -68,18 +68,9 @@ def add_numbers():
 @app.route("/api/processPdf", methods=['POST'])
 def processPdf():
     try:
-        data1 = request.get_json()
-        file = data1.get('numA')
-        result2,score = pdfprocess(file)
-        print(result2)
-        print(score)
-        #############################################
-        # HAVE PROBLEM IN RETURNING THE RESULT 
-        #############################################
-        #############################################
-        # I WILL EAT AND COME BRO
-        #############################################
-        return jsonify({'result': score})
+        file = request.files['pdfFile']
+        result, score = pdfprocess(file)
+        return jsonify({'result': result, 'score': score})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
